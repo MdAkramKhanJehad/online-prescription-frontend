@@ -1,0 +1,14 @@
+<p>doctor works!</p>
+<!-- <a *ngFor="let doctor of doctors"
+  routerLink="/doctors/{{doctor.dId}}">
+  {{doctor.name}}
+</a> -->
+<div *ngFor="let doctor of doctors">
+      <p>Username: {{doctor.username}}</p>
+      <p>First Name: {{doctor.firstName}}</p>
+      <p>Last Name: {{doctor.lastName}}</p>
+      <p>Qualification: {{doctor.qualification}}</p>
+      <p>Email: {{doctor.email}}</p>
+      <a routerLink="/doctors/edit/{{doctor.dId}}">Details</a>
+      <hr>
+</div>
