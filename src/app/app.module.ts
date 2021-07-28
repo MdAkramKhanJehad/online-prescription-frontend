@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -17,6 +17,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatRadioModule } from '@angular/material/radio';  
 
+import { AngularMaterialModule } from './angular-material.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DoctorService } from './doctor.service';
@@ -32,6 +33,8 @@ import { DoctorDetailsComponent } from './doctor-details/doctor-details.componen
 import { PrescriptionDetailsComponent } from './prescription-details/prescription-details.component';
 import { MedicineDetailsComponent } from './medicine-details/medicine-details.component'; 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { LogInComponent } from './log-in/log-in.component';
+import { RegisterComponent } from './register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,11 +43,14 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     PrescriptionComponent,
     DoctorDetailsComponent,
     PrescriptionDetailsComponent,
-    MedicineDetailsComponent
+    MedicineDetailsComponent,
+    LogInComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AngularMaterialModule,
     NgMultiSelectDropDownModule,
     FormsModule,
     ReactiveFormsModule,
@@ -72,6 +78,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     DoctorPrescriptionService,
     MatDatepickerModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
