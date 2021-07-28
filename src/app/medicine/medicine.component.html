@@ -12,59 +12,50 @@
 					<span *ngIf="!medicineForm.get('MedicineName').value && medicineForm.get('MedicineName').touched"></span>  
 				</mat-error>  
 		</td>  
-		<!-- <td class="tbl1">  
-				<mat-form-field class="demo-full-width">  
-				<input matInput [matDatepicker]="picker"matTooltip="Enter Date Of Birth" formControlName="DateOfBirth"placeholder="Choose Date Of Birth">  
-				<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>  
-				<mat-datepicker #picker></mat-datepicker>  
-				</mat-form-field>  
-				<mat-error>  
-				<span *ngIf="!medicineForm.get('DateOfBirth').value && medicineForm.get('DateOfBirth').touched"></span>  
-				</mat-error>  
-		</td>   -->
+	
 		<td class="tbl1">  
-				<mat-form-field class="demo-full-width">  
-					<input formControlName="Indication" matTooltip="Enter Indication" matInput placeholder="Indication">  
-				</mat-form-field>  
-				<mat-error>  
-					<span *ngIf="!medicineForm.get('Indication').value && medicineForm.get('Indication').touched"></span>  
-				</mat-error>  
+			<mat-form-field class="demo-full-width">  
+				<input formControlName="Indication" matTooltip="Enter Indication" matInput placeholder="Indication">  
+			</mat-form-field>  
+			<mat-error>  
+				<span *ngIf="!medicineForm.get('Indication').value && medicineForm.get('Indication').touched"></span>  
+			</mat-error>  
 		</td>  
 		</tr>  
 		<tr>  
 		<td class="tbl1">  
-				<mat-form-field class="demo-full-width">  
-					<input formControlName="Usage" matTooltip="Enter Usage" matInput placeholder="Usage">  
-				</mat-form-field>  
-				<mat-error>  
-					<span *ngIf="!medicineForm.get('Usage').value && medicineForm.get('Usage').touched"></span>  
-				</mat-error>  
+			<mat-form-field class="demo-full-width">  
+				<input formControlName="Usage" matTooltip="Enter Usage" matInput placeholder="Usage">  
+			</mat-form-field>  
+			<mat-error>  
+				<span *ngIf="!medicineForm.get('Usage').value && medicineForm.get('Usage').touched"></span>  
+			</mat-error>  
 		</td>  
 		<td class="tbl1">  
-				<mat-form-field class="demo-full-width">  
-					<input formControlName="Instruction" matTooltip="Enter Instruction" matInput placeholder="Instruction">  
-				</mat-form-field>  
-				<mat-error>  
-					<span *ngIf="!medicineForm.get('Instruction').value && medicineForm.get('Instruction').touched"></span>  
-				</mat-error>  
+			<mat-form-field class="demo-full-width">  
+				<input formControlName="Instruction" matTooltip="Enter Instruction" matInput placeholder="Instruction">  
+			</mat-form-field>  
+			<mat-error>  
+				<span *ngIf="!medicineForm.get('Instruction').value && medicineForm.get('Instruction').touched"></span>  
+			</mat-error>  
 		</td>  
 		</tr>  
 		<tr>  
 		<td></td>  
 		<td  class="content-center">  
-				<button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!medicineForm.valid">Submit</button>      
-				<button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
+			<button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!medicineForm.valid">Submit</button>      
+			<button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
 		</td>  
 		<td>  
-				<p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">  
-				{{massage}}  
-				</p>  
+			<p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">  
+			{{massage}}  
+			</p>  
 		</td>  
 		</tr>  
 		</table>
 	<br><br>
 	<table class="table" >  
-		<tr ngclass="btn-primary">  
+		<tr ngclass="btn-primary" style="background-color: burlywood">  
 			<th class="tbl2">Medicine Id</th>  
 			<th class="tbl2">Medicine Name</th>  
 			<th class="tbl2">Indication</th>  
@@ -92,12 +83,4 @@
 	  </mat-card-content>  
 	</mat-card>  
 </div>
-<!-- <div *ngFor="let medicine of medicines">
-	  <p>MedicineId: {{medicine.mId}}</p>
-	  <p>Name: {{medicine.name}}</p>
-	  <p>Indication: {{medicine.indication}}</p>
-	  <p>Usage: {{medicine.usage}}</p>
-	  <p>Instaruction: {{medicine.instruction}}</p>
-	  <a routerLink="/medicines/edit/{{medicine.name}}">Details</a>
-	  <hr>
-</div> -->
+

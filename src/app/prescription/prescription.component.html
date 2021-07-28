@@ -1,1 +1,100 @@
-<p>prescription works!</p>
+<div class="container">   
+	<mat-card>
+	<mat-card-content align="center">  
+	<form [formGroup]="prescriptionForm"(ngSubmit)="onFormSubmit(prescriptionForm.value)">  
+		<table>  
+		<tr>  
+		<td class="tbl1">  
+			<mat-form-field class="demo-full-width">  
+				<input formControlName="PatientName" matTooltip="Enter Patient Name" matInput placeholder="Patient Name">  
+			</mat-form-field>  
+			<mat-error>  
+				<span *ngIf="!prescriptionForm.get('PatientName').value && prescriptionForm.get('PatientName').touched"></span>  
+			</mat-error>  
+		</td> 
+            <td class="tbl1">  
+                  <mat-form-field class="demo-full-width">  
+                        <input formControlName="PatientAge" matTooltip="Enter Patient Age" matInput placeholder="Patient Age">  
+                  </mat-form-field>  
+                  <mat-error>  
+                        <span *ngIf="!prescriptionForm.get('PatientAge').value && prescriptionForm.get('PatientAge').touched"></span>  
+                  </mat-error>  
+            </td>  
+		<td class="tbl1">  
+                  <mat-form-field class="demo-full-width">  
+                        <input matInput [matDatepicker]="picker"matTooltip="Enter Prescription creation date" formControlName="DateTime"placeholder="Choose Date">  
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>  
+                  <mat-datepicker #picker></mat-datepicker>  
+                  </mat-form-field>  
+                  <mat-error>  
+                        <span *ngIf="!prescriptionForm.get('DateTime').value && prescriptionForm.get('DateTime').touched"></span>  
+                  </mat-error>  
+		</td>  
+		</tr>  
+		<tr>  
+		<td class="tbl1">
+                  <mat-form-field class="demo-full-width">  
+                        <input formControlName="DoctorId" matTooltip="Enter Doctor Id" matInput placeholder="Doctor ID">  
+                  </mat-form-field>  
+                  <mat-error>  
+                        <span *ngIf="!prescriptionForm.get('DoctorId').value && prescriptionForm.get('DoctorId').touched"></span>  
+                  </mat-error>  
+		</td>  
+		<td class="tbl1">  
+			<ng-multiselect-dropdown formControlName="MedicineIdsList"
+                        [placeholder]="'Select medicine'"
+                        [settings]="dropdownSettings"
+                        [data]="dropdownList"
+                        (onSelect)="onItemSelect($event)"
+                  >
+
+                  </ng-multiselect-dropdown>	 
+		</td>  
+		</tr>  
+		<tr>  
+		<td></td>  
+		<td  class="content-center">  
+				<button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!prescriptionForm.valid">Submit</button>      
+				<button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
+		</td>  
+		<td>  
+				<p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">  
+				{{massage}}  
+				</p>  
+		</td>  
+		</tr>  
+		</table>
+	<br><br>
+	<table class="table" >  
+		<tr ngclass="btn-primary" style="background-color: burlywood">  
+			<th class="tbl2">Prescription Id</th>  
+			<th class="tbl2">Patient Name</th>  
+			<th class="tbl2">Patient Age</th>  
+			<th class="tbl2">Date</th>  
+			<th class="tbl2">Doctor Name</th>  
+			<th class="tbl2">Medicines</th>  
+			<th class="tbl2">Edit</th>  
+			<th class="tbl2">Delete</th>  
+		</tr>  
+		<tr *ngFor="let prescription of prescriptions">  
+			<td class="tbl2">{{prescription.pId}}</td>  
+			<td class="tbl2">{{prescription.patientName}}</td>  
+			<td class="tbl2">{{prescription.patientAge}}</td>  
+			<td class="tbl2">{{prescription.dateTime}}</td>  
+			<td class="tbl2">{{prescription.doctorName}}</td>  
+			<td class="tbl2">{{prescription.medicinesName}}</td>  
+			<td class="tbl2">  
+			<button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadPrescriptionToEdit(prescription.pId)">Edit</button>  
+			</td>  
+			<td class="tbl2">  
+			<button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deletePrescription(prescription.pId)">Delete</button>  
+			</td>  
+		</tr>  
+
+		</table>  
+	  </form>  
+	  </mat-card-content>  
+	</mat-card>  
+</div>
+
+

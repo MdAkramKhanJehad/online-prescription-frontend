@@ -1,8 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Doctor } from 'src/models/doctor';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+  }),
+};
 @Injectable({
   providedIn: 'root'
 })
@@ -16,16 +21,15 @@ export class DoctorService {
   }
  
   public addDoctor(doctor: Doctor): Observable<Doctor> {
-    return this.http.post<Doctor>(this.apiUrl + 'add', doctor);
+    return this.http.post<Doctor>(this.apiUrl + 'add', doctor, httpOptions);
   }
 
   public updateDoctor(doctor: Doctor): Observable<Doctor> {  
-    // const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
-    return this.http.post<Doctor>(this.apiUrl + 'update', doctor);  
+    return this.http.put<Doctor>(this.apiUrl + 'update', doctor, httpOptions);  
   }
 
   public getDoctorById(dId: number): Observable<Doctor> {  
-    return this.http.get<Doctor>(this.apiUrl + '/getById?dId=' + dId);  
+    return this.http.get<Doctor>(this.apiUrl + 'getById?dId=' + dId);  
   }
 
 }

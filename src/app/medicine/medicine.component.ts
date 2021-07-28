@@ -15,7 +15,7 @@ export class MedicineComponent implements OnInit {
   medicineIdUpdate = null;
   massage = null;
 
-  constructor(private formbulider: FormBuilder,private medicineService: MedicineService) { }
+  constructor(private formbulider: FormBuilder, private medicineService: MedicineService) { }
 
   ngOnInit(): void {
     this.medicineForm = this.formbulider.group({  
@@ -30,17 +30,12 @@ export class MedicineComponent implements OnInit {
   onFormSubmit(data: any) {  
     this.dataSaved = false;  
     const medicine = data;  
-    // console.log(medicine);
-    console.log("on form submit")
     this.CreateMedicine(medicine);  
     this.medicineForm.reset();  
   } 
 
   CreateMedicine(medicine: any) {
      if (this.medicineIdUpdate == null) { 
-      if(medicine ==  null){
-        console.log('NOOOOOOOOOOOOOOOOOOOOOOOO');
-      } 
       this.medicineService.addMedicine(medicine).subscribe(  
         () => {  
           this.dataSaved = true;  
@@ -51,7 +46,6 @@ export class MedicineComponent implements OnInit {
         }  
       );  
     } else {  
-      // medicine.mId = this.medicineIdUpdate;  
       this.medicineService.updateMedicine(medicine,this.medicineIdUpdate).subscribe(() => {  
         this.dataSaved = true;  
         this.massage = 'Record Updated Successfully';  
@@ -84,17 +78,18 @@ export class MedicineComponent implements OnInit {
           this.loadMedicines();  
           this.medicineIdUpdate = null;  
           this.medicineForm.reset();  
-      
         });  
       }
-    }
-    
-}  
+    }  
+  } 
+  
+  
   resetForm() {  
     this.medicineForm.reset();  
     this.massage = null;  
     this.dataSaved = false;  
   }  
+
 
   loadMedicines(){
     this.medicineService.getAllMedicine().subscribe(

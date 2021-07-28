@@ -25,17 +25,12 @@ export class MedicineService {
   }
   
   public addMedicine(medicine: any): Observable<Medicine> {
-    console.log(medicine.MedicineName)
-    console.log(medicine.Indication)
-    console.log(medicine.Usage)
-    console.log(medicine.Instruction)
     var body = {
       "Name": String(medicine.MedicineName),
       "Indication": String(medicine.Indication),
       "Usage": String(medicine.Usage),
       "Instruction": Number(medicine.Instruction)
-  }
-    console.log(body)
+    }
     return this.http.post<Medicine>(this.apiUrl + 'add', body, httpOptions);
   }
 
@@ -47,7 +42,7 @@ export class MedicineService {
       "Usage": String(medicine.Usage),
       "Instruction": Number(medicine.Instruction)
   }
-    return this.http.post<Medicine>(this.apiUrl + 'update', body, httpOptions);  
+    return this.http.put<Medicine>(this.apiUrl + 'update', body, httpOptions);  
   } 
 
   public getMedicineById(mId: number): Observable<Medicine> {  
@@ -55,8 +50,6 @@ export class MedicineService {
   }
 
   public deleteMedicineById(mId: any){  
-    // console.log(mId)
-    // console.log('inside delete')
     return this.http.delete<any>(this.apiUrl + 'delete', {params: {"mId": mId}});  
   }
 

@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -30,7 +31,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DoctorDetailsComponent } from './doctor-details/doctor-details.component';
 import { PrescriptionDetailsComponent } from './prescription-details/prescription-details.component';
 import { MedicineDetailsComponent } from './medicine-details/medicine-details.component'; 
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,12 +45,14 @@ import { MedicineDetailsComponent } from './medicine-details/medicine-details.co
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    NgMultiSelectDropDownModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
     AppRoutingModule,
     MatRadioModule,
+    MatNativeDateModule,
     MatButtonModule,
     MatMenuModule,
     MatDatepickerModule,

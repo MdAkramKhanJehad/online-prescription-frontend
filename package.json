@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~11.2.1",
     "@angular/router": "~11.2.1",
     "glob-parent": "^5.1.2",
+    "ng-multiselect-dropdown": "^0.3.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "watchpack-chokidar2": "^2.0.1",

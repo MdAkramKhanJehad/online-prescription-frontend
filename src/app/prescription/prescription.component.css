@@ -1,0 +1,13 @@
+td:not(:first-child) {
+      padding-top:15 px;
+      padding-bottom:10px;
+      padding-right:20px;   
+      padding-left:20px;    
+}
+
+th{
+      padding-top:15px;
+      padding-bottom:15px;
+      padding-right:10px;
+      padding-left: 10px;   
+}
