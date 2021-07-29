@@ -1,12 +1,20 @@
 <mat-card>  
-	<mat-toolbar color="accent">  
-	  <div align="center" style="color:white;text-align: right;">  
-		<button type="register" mat-raised-button color="Link" matTooltip="Register" routerLink="/register">Register</button>
-		<button type="login" mat-raised-button color="Link" matTooltip="Login" routerLink="/login">Login</button>
-		<button type="doctor" mat-raised-button color="Link" matTooltip="See the details of doctors" routerLink="/doctors">doctor</button>
-		<button type="medicine" mat-raised-button color="Link" matTooltip="See all the medicines" routerLink="/medicines">medicine</button>  
-		<button type="prescription" mat-raised-button color="Link" matTooltip="See all the prescriptions" routerLink="/prescriptions">prescription</button>    
-	  </div>    
+	<mat-toolbar color="accent"> 
+		<div fxShow="true" fxHide.lt-md fxFlex fxLayout>
+			<!-- The following menu items will be hidden on both SM and XS screen sizes -->
+			<div fxFlex>
+			   <a mat-stroked-button matTooltip="Register" routerLink="/register" mat-button>Register</a>
+			   <a mat-stroked-button matTooltip="Login" routerLink="/login" mat-button>Login</a>
+			</div>
+			<div fxFlex fxLayoutAlign="center center">
+			   <a mat-stroked-button matTooltip="See the doctors" routerLink="/doctors" mat-button>Doctors</a>
+			   <a mat-stroked-button matTooltip="See all the medicines" routerLink="/medicines" mat-button>Medicines</a>
+			   <a mat-stroked-button matTooltip="See all the prescriptions" routerLink="/prescriptions" mat-button>Prescriptions</a>
+			</div>
+			<div fxFlex fxLayoutAlign="flex-end center">
+			   <a mat-raised-button matTooltip="Logout"  routerLink="/logout" mat-button>Logout</a>
+			</div>
+		    </div> 
 	</mat-toolbar>  
 </mat-card>
 <router-outlet></router-outlet>

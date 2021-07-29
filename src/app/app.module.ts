@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -30,15 +30,14 @@ import { MedicineComponent } from './medicine/medicine.component';
 import { PrescriptionComponent } from './prescription/prescription.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DoctorDetailsComponent } from './doctor-details/doctor-details.component';
-import { PrescriptionDetailsComponent } from './prescription-details/prescription-details.component';
-import { MedicineDetailsComponent } from './medicine-details/medicine-details.component'; 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { LogInComponent } from './log-in/log-in.component';
 import { RegisterComponent } from './register/register.component';
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './guards/auth-guard.service';
-
+import { LogoutComponent } from './logout/logout.component';
+import { TokenInterceptorService } from './token-interceptor.service';
 
 export function tokenGetter(){
   return localStorage.getItem("jwt");
@@ -50,10 +49,9 @@ export function tokenGetter(){
     MedicineComponent,
     PrescriptionComponent,
     DoctorDetailsComponent,
-    PrescriptionDetailsComponent,
-    MedicineDetailsComponent,
     LogInComponent,
-    RegisterComponent
+    RegisterComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -67,8 +65,9 @@ export function tokenGetter(){
     RouterModule.forRoot([
       { path: '', pathMatch: 'full', redirectTo: 'login' },
       { path: 'login', component: LogInComponent },
+      { path: 'logout', component: LogoutComponent},
       { path: 'register', component: RegisterComponent },
-      { path: 'doctors', component: DoctorComponent },
+      { path: 'doctors', component: DoctorComponent, canActivate:[AuthGuard] },
       { path: 'medicines', component: MedicineComponent, canActivate:[AuthGuard] },
       { path: 'prescriptions', component: PrescriptionComponent, canActivate:[AuthGuard] },
       { path: 'doctors/editProfile/:dId', component: DoctorDetailsComponent, canActivate:[AuthGuard] },
@@ -99,6 +98,11 @@ export function tokenGetter(){
     MedicineService, 
     PrescriptionService, 
     MedicinePrescriptionService, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    },
     DoctorPrescriptionService,
     MatDatepickerModule,
     AuthGuard

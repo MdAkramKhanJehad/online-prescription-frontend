@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,13 +12,27 @@ export class LogInComponent{
   invalidLogin: boolean;
   loginForm: any;
 
-  constructor(private router:Router, private http: HttpClient) { }
+  constructor(private router:Router, private http: HttpClient, private formbulider: FormBuilder,) { }
 
   ngOnInit(): void {
+    this.loginForm = this.formbulider.group({  
+      Username: ['', [Validators.required]],  
+      Password: ['', [Validators.required]],  
+    }); 
+    // if(localStorage.getItem('jwt')!=null){
+    //   this.router.navigateByUrl('medicines');
+    // }
   }
 
-  login(form: NgForm) {
-    const credentials = JSON.stringify(form.value);
+  login(form: any) {
+    // const credentials = JSON.stringify(form.value);
+    console.log(form.Username);
+    console.log(form.Password);
+
+    const credentials = {
+      "Username": String(form.Username),
+      "Password": String(form.Password)
+    }
     this.http.post("http://localhost:5002/api/login", credentials, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
@@ -27,7 +41,7 @@ export class LogInComponent{
       const token = (<any>response).token;
       localStorage.setItem("jwt", token);
       this.invalidLogin = false;
-      this.router.navigate(["/prescriptions"]);
+      this.router.navigate(["medicines"]);
     }, err => {
       this.invalidLogin = true;
     });

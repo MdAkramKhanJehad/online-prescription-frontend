@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Medicine } from 'src/models/medicine';
 import { MedicineService } from '../medicine.service';
 
@@ -15,7 +17,7 @@ export class MedicineComponent implements OnInit {
   medicineIdUpdate = null;
   massage = null;
 
-  constructor(private formbulider: FormBuilder, private medicineService: MedicineService) { }
+  constructor(private router: Router, private jwtHelper: JwtHelperService, private formbulider: FormBuilder, private medicineService: MedicineService) { }
 
   ngOnInit(): void {
     this.medicineForm = this.formbulider.group({  
@@ -25,6 +27,20 @@ export class MedicineComponent implements OnInit {
       Instruction: ['', [Validators.required]]
     });  
     this.loadMedicines();
+  }
+
+  isUserAuthenticated() {
+    const token: string = localStorage.getItem("jwt");
+    if (token && !this.jwtHelper.isTokenExpired(token)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  public logOut = () => {
+    localStorage.removeItem("jwt");
+    this.router.navigate(['login']);
   }
 
   onFormSubmit(data: any) {  

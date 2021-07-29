@@ -9,6 +9,7 @@ import { PrescriptionService } from '../prescription.service';
 import { MultiSelectComponent } from 'ng-multiselect-dropdown';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-prescription',
@@ -17,6 +18,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class PrescriptionComponent implements OnInit {
 
+  
   prescriptionForm: any;
   dataSaved = false;
   prescriptionIdUpdate = null;
@@ -66,6 +68,7 @@ export class PrescriptionComponent implements OnInit {
   }
   public logOut = () => {
     localStorage.removeItem("jwt");
+    this.router.navigate(['login']);
   }
 
   

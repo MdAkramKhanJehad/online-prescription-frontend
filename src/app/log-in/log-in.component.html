@@ -1,5 +1,5 @@
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-  
+<!--   
   <form class="form-signin" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
     <div class="container-fluid">
       <h2 class="form-signin-heading">Login</h2>
@@ -13,16 +13,16 @@
       <br/>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </div>
-  </form>
+  </form> -->
 
-      <!-- <mat-card class="box">
+      <mat-card class="box">
         <mat-card-header>
           <mat-card-title>Log in</mat-card-title>
         </mat-card-header>
         <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username or password.</div><br> 
-        <form class="example-form" [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
-          
+        <form class="example-form" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
           <mat-card-content>
+            <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username or password.</div><br>
             <mat-form-field class="example-full-width">
               <input matInput placeholder="Username" formControlName="Username" matTooltip="Enter username" required>
             </mat-form-field>
@@ -40,6 +40,6 @@
           </mat-card-content>
           <button type="submit" mat-stroked-button color="accent" class="btn-block">Log in</button>
         </form>
-      </mat-card> -->
+      </mat-card>
 
 </div>
