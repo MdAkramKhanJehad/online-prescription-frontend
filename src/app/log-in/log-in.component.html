@@ -1,22 +1,45 @@
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  
+  <form class="form-signin" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+    <div class="container-fluid">
+      <h2 class="form-signin-heading">Login</h2>
+      <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username or password.</div>
+      <br/>
+      <label for="username" class="sr-only">Email address</label>
+      <input type="email" id="username" name="username" ngModel class="form-control" placeholder="User Name" required autofocus>
+      <br/>
+      <label for="password" class="sr-only">Password</label>
+      <input type="password" id="password" name="password" ngModel class="form-control" placeholder="Password" required>
+      <br/>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </div>
+  </form>
 
-      <mat-card class="box">
+      <!-- <mat-card class="box">
         <mat-card-header>
           <mat-card-title>Log in</mat-card-title>
         </mat-card-header>
-    
-        <form class="example-form">
+        <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username or password.</div><br> 
+        <form class="example-form" [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+          
           <mat-card-content>
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Username">
+              <input matInput placeholder="Username" formControlName="Username" matTooltip="Enter username" required>
             </mat-form-field>
+            <mat-error>  
+              <span *ngIf="!loginForm.get('Username').value && loginForm.get('Username').touched"></span>  
+            </mat-error> 
     
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Password">
+              <input type="password" matInput placeholder="Password" formControlName="Password" matTooltip="Enter Password" required>
             </mat-form-field>
+            <mat-error>  
+              <span *ngIf="!loginForm.get('Password').value && loginForm.get('Password').touched"></span>  
+            </mat-error> 
+
           </mat-card-content>
-          <button mat-stroked-button color="accent" class="btn-block">Log in</button>
+          <button type="submit" mat-stroked-button color="accent" class="btn-block">Log in</button>
         </form>
-      </mat-card>
+      </mat-card> -->
 
 </div>

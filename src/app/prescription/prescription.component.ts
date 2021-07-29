@@ -7,6 +7,8 @@ import { DoctorService } from '../doctor.service';
 import { MedicineService } from '../medicine.service';
 import { PrescriptionService } from '../prescription.service';
 import { MultiSelectComponent } from 'ng-multiselect-dropdown';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-prescription',
@@ -29,7 +31,7 @@ export class PrescriptionComponent implements OnInit {
   doctor: Doctor;
   medicineNamesforEdit: String[] = [];
   
-  constructor(private formbulider: FormBuilder, private prescriptionService: PrescriptionService, 
+  constructor(private jwtHelper: JwtHelperService, private router: Router, private formbulider: FormBuilder, private prescriptionService: PrescriptionService, 
               private doctorService: DoctorService, private medicineService: MedicineService) { }
 
   ngOnInit(): void {
@@ -52,6 +54,21 @@ export class PrescriptionComponent implements OnInit {
     };
   }
 
+
+  isUserAuthenticated() {
+    const token: string = localStorage.getItem("jwt");
+    if (token && !this.jwtHelper.isTokenExpired(token)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  public logOut = () => {
+    localStorage.removeItem("jwt");
+  }
+
+  
   onFormSubmit(data: any) {  
     this.dataSaved = false;  
     const prescription = data;

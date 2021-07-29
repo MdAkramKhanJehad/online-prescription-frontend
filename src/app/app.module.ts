@@ -35,6 +35,14 @@ import { MedicineDetailsComponent } from './medicine-details/medicine-details.co
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { LogInComponent } from './log-in/log-in.component';
 import { RegisterComponent } from './register/register.component';
+import { FlexLayoutModule } from '@angular/flex-layout'
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthGuard } from './guards/auth-guard.service';
+
+
+export function tokenGetter(){
+  return localStorage.getItem("jwt");
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,13 +57,29 @@ import { RegisterComponent } from './register/register.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
+    FlexLayoutModule,
     NgMultiSelectDropDownModule,
-    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule,
+    RouterModule.forRoot([
+      { path: '', pathMatch: 'full', redirectTo: 'login' },
+      { path: 'login', component: LogInComponent },
+      { path: 'register', component: RegisterComponent },
+      { path: 'doctors', component: DoctorComponent },
+      { path: 'medicines', component: MedicineComponent, canActivate:[AuthGuard] },
+      { path: 'prescriptions', component: PrescriptionComponent, canActivate:[AuthGuard] },
+      { path: 'doctors/editProfile/:dId', component: DoctorDetailsComponent, canActivate:[AuthGuard] },
+    ]),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['http://localhost:5002'],
+        disallowedRoutes: [] 
+      }
+    }),
     AppRoutingModule,
     MatRadioModule,
     MatNativeDateModule,
@@ -76,7 +100,8 @@ import { RegisterComponent } from './register/register.component';
     PrescriptionService, 
     MedicinePrescriptionService, 
     DoctorPrescriptionService,
-    MatDatepickerModule
+    MatDatepickerModule,
+    AuthGuard
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
