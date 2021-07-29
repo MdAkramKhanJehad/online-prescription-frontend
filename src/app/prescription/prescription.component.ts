@@ -37,7 +37,9 @@ export class PrescriptionComponent implements OnInit {
               private doctorService: DoctorService, private medicineService: MedicineService) { }
 
   ngOnInit(): void {
-    // console.log("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
+    if(localStorage.getItem("jwt") == null){
+      this.router.navigate(["/login"]);
+    }
     this.prescriptionForm = this.formbulider.group({  
       PatientName: ['', [Validators.required]],  
       PatientAge: ['', [Validators.required]],  

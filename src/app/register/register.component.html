@@ -4,44 +4,44 @@
       <mat-card-title>Register</mat-card-title>
     </mat-card-header>
 
-    <form class="example-form">
+    <form class="example-form" [formGroup]="registrationForm" (ngSubmit)="onFormSubmit(registrationForm.value)">
 
       <mat-card-content>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="First Name">
+          <input formControlName="FirstName" matTooltip="Enter First Name" autocomplete="off" matInput placeholder="First Name">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Last Name">
+          <input formControlName="LastName" matTooltip="Enter Last Name" autocomplete="off" matInput placeholder="Last Name">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Qualification(Ex. MBBS, FCPS)">
+          <input formControlName="Qualification" matTooltip="Enter Qualification" autocomplete="off" matInput placeholder="Qualification(Ex. MBBS, FCPS)">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Username">
+          <input formControlName="Username" matTooltip="Enter Username" autocomplete="off" matInput placeholder="Username">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email">
+          <input formControlName="Email" matTooltip="Enter Email" autocomplete="off" matInput placeholder="Email">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password">
+          <input type="password" formControlName="Password" matTooltip="Enter Password" autocomplete="off" matInput placeholder="Password">
         </mat-form-field>
 
-        <mat-form-field class="example-full-width">
+        <!-- <mat-form-field class="example-full-width">
           <mat-label>Choose a role...</mat-label>
           <mat-select>
             <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
             </mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
 
       </mat-card-content>
 
-      <button mat-stroked-button color="accent" class="btn-block">Register</button>
+      <button submit="submit" mat-stroked-button color="accent" class="btn-block">Register</button>
 
     </form>
   </mat-card>

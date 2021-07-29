@@ -16,6 +16,10 @@ export class DoctorComponent implements OnInit {
   constructor(private router: Router, private jwtHelper: JwtHelperService, private doctorService: DoctorService) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem("jwt") == null){
+      this.router.navigate(["/login"]);
+    }
+    
     this.loadDoctors();
   }
 
