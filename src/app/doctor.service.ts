@@ -33,16 +33,20 @@ export class DoctorService {
     return this.http.post<Doctor>(this.apiUrl + 'add', body, httpOptions);
   }
 
-  public updateDoctor(data: Doctor, dId: Number): Observable<Doctor> {  
+  public updateDoctor(data: any, dId: Number): Observable<Doctor> {  
     var body = {
-      "FirstName": String(data.firstName),
-      "LastName": String(data.lastName),
-      "Qualification": String(data.qualification),
-      "Username": String(data.userName),
-      "Email": String(data.email),
-      "Password": String(data.password)
+      "DId": dId,
+      "FirstName": String(data.FirstName),
+      "LastName": String(data.LastName),
+      "Qualification": String(data.Qualification),
+      "Username": String(data.Username),
+      "Email": String(data.Email),
+      "Password": String(data.Password)
     };
     return this.http.put<Doctor>(this.apiUrl + 'update', body, httpOptions);  
+  }
+  public deleteDoctorById(dId: any){  
+    return this.http.delete<any>(this.apiUrl + 'delete', {params: {"dId": dId}});  
   }
 
   public getDoctorById(dId: number): Observable<Doctor> {  

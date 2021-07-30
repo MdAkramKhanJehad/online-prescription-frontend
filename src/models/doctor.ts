@@ -3,7 +3,7 @@ export class Doctor{
        firstName: string;
        lastName: string;
        qualification: string;
-       userName: string;
+       username: string;
        email: string;
        password: string;
 }

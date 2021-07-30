@@ -1,14 +1,103 @@
-<p>doctor works!</p>
-<!-- <a *ngFor="let doctor of doctors"
-  routerLink="/doctors/{{doctor.dId}}">
-  {{doctor.name}}
-</a> -->
-<div *ngFor="let doctor of doctors">
-      <p>Username: {{doctor.username}}</p>
-      <p>First Name: {{doctor.firstName}}</p>
-      <p>Last Name: {{doctor.lastName}}</p>
-      <p>Qualification: {{doctor.qualification}}</p>
-      <p>Email: {{doctor.email}}</p>
-      <a routerLink="/doctors/edit/{{doctor.dId}}">Details</a>
-      <hr>
+<div class="container">   
+	<mat-card>
+	<mat-card-content align="center">  
+	<form [formGroup]="doctorForm"(ngSubmit)="onFormSubmit(doctorForm.value)">  
+		<table>  
+		<tr>  
+		<td class="tbl1">  
+			<mat-form-field class="demo-full-width">  
+				<input formControlName="FirstName" matTooltip="Enter First Name" matInput autocomplete="off" placeholder="First Name">  
+			</mat-form-field>  
+			<mat-error>  
+				<span *ngIf="!doctorForm.get('FirstName').value && doctorForm.get('FirstName').touched"></span>  
+			</mat-error>  
+		</td>  
+	
+		<td class="tbl1">  
+			<mat-form-field class="demo-full-width">  
+				<input formControlName="LastName" matTooltip="Enter Last Name" matInput autocomplete="off" placeholder="Last Name">  
+			</mat-form-field>  
+			<mat-error>  
+				<span *ngIf="!doctorForm.get('LastName').value && doctorForm.get('LastName').touched"></span>  
+			</mat-error>  
+		</td>  
+
+    <td class="tbl1">  
+			<mat-form-field class="demo-full-width">  
+				<input formControlName="Qualification" matTooltip="Enter Qualification" matInput autocomplete="off" placeholder="Qualification">  
+			</mat-form-field>  
+			<mat-error>  
+				<span *ngIf="!doctorForm.get('Qualification').value && doctorForm.get('Qualification').touched"></span>  
+			</mat-error>  
+		</td> 
+		</tr>  
+		<tr>  
+		<td class="tbl1">  
+			<mat-form-field class="demo-full-width">  
+				<input formControlName="Username" matTooltip="Enter Username" matInput autocomplete="off" placeholder="Username">  
+			</mat-form-field>  
+			<mat-error>  
+				<span *ngIf="!doctorForm.get('Username').value && doctorForm.get('Username').touched"></span>  
+			</mat-error>  
+		</td>  
+		<td class="tbl1">  
+			<mat-form-field class="demo-full-width">  
+				<input formControlName="Email" matTooltip="Enter Email" matInput autocomplete="off" placeholder="Email">  
+			</mat-form-field>  
+			<mat-error>  
+				<span *ngIf="!doctorForm.get('Email').value && doctorForm.get('Email').touched"></span>  
+			</mat-error>  
+		</td>  
+    <td class="tbl1">  
+			<mat-form-field class="demo-full-width">  
+				<input type="password" formControlName="Password" matTooltip="Enter Password" matInput autocomplete="off" placeholder="Password">  
+			</mat-form-field>  
+			<mat-error>  
+				<span *ngIf="!doctorForm.get('Password').value && doctorForm.get('Password').touched"></span>  
+			</mat-error>  
+		</td> 
+		</tr>  
+		<tr>  
+		<td></td>  
+		<td  class="content-center">  
+			<button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!doctorForm.valid">Submit</button>      
+			<button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
+		</td>  
+		<td>  
+			<p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">  
+			{{massage}}  
+			</p>  
+		</td>  
+		</tr>  
+		</table>
+	<br><br>
+	<table class="table" >  
+		<tr ngclass="btn-primary" style="background-color: burlywood">  
+			<th class="tbl2">Doctor Id</th>  
+			<th class="tbl2">Doctor Name</th>  
+			<th class="tbl2">Qualification</th>  
+			<th class="tbl2">Email</th>  
+			<th class="tbl2">Username</th>  
+			<th class="tbl2">Edit</th>  
+			<th class="tbl2">Delete</th>  
+		</tr>  
+		<tr *ngFor="let doctor of doctors">  
+			<td class="tbl2">{{doctor.dId}}</td>  
+			<td class="tbl2">{{doctor.firstName+ " " + doctor.lastName}}</td>  
+			<td class="tbl2">{{doctor.qualification}}</td>  
+			<td class="tbl2">{{doctor.email}}</td>  
+			<td class="tbl2">{{doctor.username}}</td>  
+			<td class="tbl2">  
+			<button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadDoctorToEdit(doctor.dId)">Edit</button>  
+			</td>  
+			<td class="tbl2">  
+			<button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteDoctor(doctor.dId)">Delete</button>  
+			</td>  
+		</tr>  
+
+		</table>  
+	  </form>  
+	  </mat-card-content>  
+	</mat-card>  
 </div>
+

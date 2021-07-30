@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Doctor } from 'src/models/doctor';
+import { DoctorService } from '../doctor.service';
 
 @Component({
   selector: 'app-doctor-details',
@@ -9,10 +11,14 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class DoctorDetailsComponent implements OnInit {
 
-  constructor(private router: Router, private jwtHelper: JwtHelperService, ) { }
+  doctor: Doctor;
+
+  constructor(private router: Router, private jwtHelper: JwtHelperService, private doctorService: DoctorService) { }
 
   ngOnInit(): void {
   }
+
+
 
   isUserAuthenticated() {
     const token: string = localStorage.getItem("jwt");
