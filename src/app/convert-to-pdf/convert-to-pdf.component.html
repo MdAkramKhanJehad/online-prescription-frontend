@@ -1,0 +1,56 @@
+
+<div id="contentToConvert" style="text-align: center;">
+  <br><br>
+  
+  <div style="text-align:center; color:green; font-size:30px">
+    <b>Online Prescription</b><br><br>
+    <h4 style="color:black; font-size:20px">Date: {{prescription.dateTime | date:'yyyy-MM-dd'}}</h4>
+  </div><br>
+  <hr><hr><br>
+
+  <div style="width: 100%; text-align:center; overflow: hidden;">
+    <div style="width: 600px; float: left;">
+      <h1>Doctor Information</h1>
+      <h3 style="margin-bottom: 0%;"><b>Dr {{doctor.firstName + " " + doctor.lastName}}</b></h3>
+      <b>{{doctor.qualification}}</b><br>
+      Dhaka Medical College
+    </div>
+    <div style=" margin-left: 620px;">
+      <h1>Patient Information</h1>
+      <h3 style="margin-bottom: 0%;">Name: <b>{{prescription.patientName}}</b></h3>
+      Age: <b>{{prescription.patientAge}}</b><br>
+    </div>
+  </div><br><hr><br>
+
+  <div style="display: inline-block;">
+    <table class="table" style="width: 100%;">  
+      <tr ngclass="btn-primary" style="background-color: rgb(230, 228, 225)">  
+        <th class="tbl2">Medicine Name</th>  
+        <th class="tbl2">Usage</th>
+        <th class="tbl2">Instruction</th>  	
+      </tr>  
+      <tr *ngFor="let medicine of medicines">  
+        <td class="tbl2">{{medicine.name}}</td> 
+        <td class="tbl2">{{medicine.usage}}</td> 
+        <td class="tbl2">{{medicine.instruction}} tablet</td>  
+      </tr>  
+  
+    </table> 
+  </div> <br><br><br>
+  
+  <div style="width: 100%; text-align:center; overflow: hidden;">
+    <div style="width: 100px; float: left;">
+    </div>
+    <div style=" margin-left: 1000px;">
+      {{prescription.doctorName}}
+      <hr>
+      Signature
+    </div>
+  </div>
+   
+  <br>
+</div>
+
+<div style="text-align:center">
+  <button align='center' mat-button mat-raised-button (click)="generatePDF()">Generate PDF</button>
+</div>

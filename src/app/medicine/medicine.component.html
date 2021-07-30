@@ -6,7 +6,7 @@
 		<tr>  
 		<td class="tbl1">  
 			<mat-form-field class="demo-full-width">  
-				<input formControlName="MedicineName" matTooltip="Enter Medicine Name" matInput placeholder="Medicine Name">  
+				<input formControlName="MedicineName" matTooltip="Enter Medicine Name" matInput autocomplete="off" placeholder="Medicine Name">  
 			</mat-form-field>  
 			<mat-error>  
 				<span *ngIf="!medicineForm.get('MedicineName').value && medicineForm.get('MedicineName').touched"></span>  
@@ -15,7 +15,7 @@
 	
 		<td class="tbl1">  
 			<mat-form-field class="demo-full-width">  
-				<input formControlName="Indication" matTooltip="Enter Indication" matInput placeholder="Indication">  
+				<input formControlName="Indication" matTooltip="Enter Indication" matInput autocomplete="off" placeholder="Indication">  
 			</mat-form-field>  
 			<mat-error>  
 				<span *ngIf="!medicineForm.get('Indication').value && medicineForm.get('Indication').touched"></span>  
@@ -25,7 +25,7 @@
 		<tr>  
 		<td class="tbl1">  
 			<mat-form-field class="demo-full-width">  
-				<input formControlName="Usage" matTooltip="Enter Usage" matInput placeholder="Usage">  
+				<input formControlName="Usage" matTooltip="Enter Usage" matInput autocomplete="off" placeholder="Usage">  
 			</mat-form-field>  
 			<mat-error>  
 				<span *ngIf="!medicineForm.get('Usage').value && medicineForm.get('Usage').touched"></span>  
@@ -33,7 +33,7 @@
 		</td>  
 		<td class="tbl1">  
 			<mat-form-field class="demo-full-width">  
-				<input formControlName="Instruction" matTooltip="Enter Instruction" matInput placeholder="Instruction">  
+				<input formControlName="Instruction" matTooltip="Enter Instruction" matInput autocomplete="off" placeholder="Instruction">  
 			</mat-form-field>  
 			<mat-error>  
 				<span *ngIf="!medicineForm.get('Instruction').value && medicineForm.get('Instruction').touched"></span>  

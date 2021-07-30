@@ -10,6 +10,7 @@ import { MultiSelectComponent } from 'ng-multiselect-dropdown';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpHeaders } from '@angular/common/http';
+import {formatDate} from '@angular/common'
 
 @Component({
   selector: 'app-prescription',
@@ -24,6 +25,7 @@ export class PrescriptionComponent implements OnInit {
   prescriptionIdUpdate = null;
   massage = null;
   prescriptions: Prescription[] = [];
+  prescription: Prescription;
   medicinesObjects: Medicine[] = [];
   medicines: String[] = [];
   medicineIds: Number[] = [];
@@ -128,6 +130,7 @@ export class PrescriptionComponent implements OnInit {
     });  
   
   }
+
   getNameForEdit(idList: number[]) {
     this.medicineService.getAllMedicine().subscribe(
       response => {

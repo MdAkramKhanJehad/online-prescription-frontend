@@ -38,6 +38,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './guards/auth-guard.service';
 import { LogoutComponent } from './logout/logout.component';
 import { TokenInterceptorService } from './token-interceptor.service';
+import { ConvertToPdfComponent } from './convert-to-pdf/convert-to-pdf.component';
 
 export function tokenGetter(){
   return localStorage.getItem("jwt");
@@ -51,7 +52,8 @@ export function tokenGetter(){
     DoctorDetailsComponent,
     LogInComponent,
     RegisterComponent,
-    LogoutComponent
+    LogoutComponent,
+    ConvertToPdfComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +68,7 @@ export function tokenGetter(){
       { path: '', pathMatch: 'full', redirectTo: 'login' },
       { path: 'login', component: LogInComponent },
       { path: 'logout', component: LogoutComponent},
+      { path: 'prescriptions/generatePdf/:id', component: ConvertToPdfComponent},
       { path: 'register', component: RegisterComponent },
       { path: 'doctors', component: DoctorComponent, canActivate:[AuthGuard] },
       { path: 'medicines', component: MedicineComponent, canActivate:[AuthGuard] },

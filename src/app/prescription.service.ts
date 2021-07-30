@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { pid } from 'process';
 import { Observable } from 'rxjs';
 import { MedicinePrescription } from 'src/models/medicinePrescription';
@@ -20,7 +21,7 @@ export class PrescriptionService {
   private apiUrl = 'http://127.0.0.1:5002/api/prescription/';
 
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   public getAllPrescription(): Observable<Prescription[]>{
     var prescriptions = this.http.get<Prescription[]>(this.apiUrl + 'getAll');

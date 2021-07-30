@@ -25,14 +25,11 @@ export class LogInComponent{
   }
 
   login(form: any) {
-    // const credentials = JSON.stringify(form.value);
-    console.log(form.Username);
-    console.log(form.Password);
-
     const credentials = {
       "Username": String(form.Username),
       "Password": String(form.Password)
     }
+    
     this.http.post("http://localhost:5002/api/login", credentials, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"

@@ -6,7 +6,7 @@
 		<tr>  
 		<td class="tbl1">  
 			<mat-form-field class="demo-full-width">  
-				<input formControlName="PatientName" matTooltip="Enter Patient Name" matInput placeholder="Patient Name">  
+				<input formControlName="PatientName" matTooltip="Enter Patient Name" matInput autocomplete="off" placeholder="Patient Name">  
 			</mat-form-field>  
 			<mat-error>  
 				<span *ngIf="!prescriptionForm.get('PatientName').value && prescriptionForm.get('PatientName').touched"></span>  
@@ -14,7 +14,7 @@
 		</td> 
             <td class="tbl1">  
                   <mat-form-field class="demo-full-width">  
-                        <input formControlName="PatientAge" matTooltip="Enter Patient Age" matInput placeholder="Patient Age">  
+                        <input formControlName="PatientAge" matTooltip="Enter Patient Age" matInput autocomplete="off" placeholder="Patient Age">  
                   </mat-form-field>  
                   <mat-error>  
                         <span *ngIf="!prescriptionForm.get('PatientAge').value && prescriptionForm.get('PatientAge').touched"></span>  
@@ -22,7 +22,7 @@
             </td>  
 		<td class="tbl1">  
                   <mat-form-field class="demo-full-width">  
-                        <input matInput [matDatepicker]="picker"matTooltip="Enter Prescription creation date" formControlName="DateTime"placeholder="Choose Date">  
+                        <input matInput [matDatepicker]="picker"matTooltip="Enter Prescription creation date" formControlName="DateTime" autocomplete="off" placeholder="Choose Date">  
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>  
                   <mat-datepicker #picker></mat-datepicker>  
                   </mat-form-field>  
@@ -34,7 +34,7 @@
 		<tr>  
 		<td class="tbl1">
                   <mat-form-field class="demo-full-width">  
-                        <input formControlName="DoctorId" matTooltip="Enter Doctor Id" matInput placeholder="Doctor ID">  
+                        <input formControlName="DoctorId" matTooltip="Enter Doctor Id" matInput autocomplete="off" placeholder="Doctor ID">  
                   </mat-form-field>  
                   <mat-error>  
                         <span *ngIf="!prescriptionForm.get('DoctorId').value && prescriptionForm.get('DoctorId').touched"></span>  
@@ -64,7 +64,7 @@
 		</tr>  
 		</table>
 	<br><br>
-	<table class="table" >  
+	<table class="table"style="text-align: center;" >  
 		<tr ngclass="btn-primary" style="background-color: burlywood">  
 			<th class="tbl2">Prescription Id</th>  
 			<th class="tbl2">Patient Name</th>  
@@ -74,20 +74,24 @@
 			<th class="tbl2">Medicines</th>  
 			<th class="tbl2">Edit</th>  
 			<th class="tbl2">Delete</th>  
+			<th class="tbl2">Generate PDF</th>  
 		</tr>  
 		<tr *ngFor="let prescription of prescriptions">  
 			<td class="tbl2">{{prescription.pId}}</td>  
 			<td class="tbl2">{{prescription.patientName}}</td>  
 			<td class="tbl2">{{prescription.patientAge}}</td>  
-			<td class="tbl2">{{prescription.dateTime}}</td>  
+			<td class="tbl2">{{prescription.dateTime | date:'yyyy-MM-dd'}}</td>  
 			<td class="tbl2">{{prescription.doctorName}}</td>  
 			<td class="tbl2">{{prescription.medicinesName}}</td>  
 			<td class="tbl2">  
-			<button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadPrescriptionToEdit(prescription.pId)">Edit</button>  
+			<button type="button" class="btn btn-info" matTooltip="Click Edit Button" (click)="loadPrescriptionToEdit(prescription.pId)">Edit</button>  
 			</td>  
 			<td class="tbl2">  
-			<button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deletePrescription(prescription.pId)">Delete</button>  
+				<button type="button" class="btn btn-danger" matTooltip="Click Delete Button" (click)="deletePrescription(prescription.pId)">Delete</button>  
 			</td>  
+			<td class="tbl2">  
+				<button type="button" class="btn btn-info" matTooltip="Generate PDF" routerLink="generatePdf/{{prescription.pId}}" >Generate</button>  
+			</td>
 		</tr>  
 
 		</table>  
