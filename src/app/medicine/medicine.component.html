@@ -2,7 +2,7 @@
 	<mat-card>
 	<mat-card-content align="center">  
 	<form [formGroup]="medicineForm"(ngSubmit)="onFormSubmit(medicineForm.value)">  
-		<table>  
+		<table  class="centerTable">  
 		<tr>  
 		<td class="tbl1">  
 			<mat-form-field class="demo-full-width">  
@@ -44,6 +44,7 @@
 		<td></td>  
 		<td  class="content-center">  
 			<button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!medicineForm.valid">Submit</button>      
+			&nbsp;&nbsp;&nbsp;
 			<button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
 		</td>  
 		<td>  
@@ -55,7 +56,7 @@
 		</table>
 	<br><br>
 	<table class="table" >  
-		<tr ngclass="btn-primary" style="background-color: burlywood">  
+		<tr ngclass="btn-primary" style="background-color: rgb(25, 158, 125)">  
 			<th class="tbl2">Medicine Id</th>  
 			<th class="tbl2">Medicine Name</th>  
 			<th class="tbl2">Indication</th>  
@@ -71,10 +72,10 @@
 			<td class="tbl2">{{medicine.usage}}</td>  
 			<td class="tbl2">{{medicine.instruction}} tablet</td>  
 			<td class="tbl2">  
-			<button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadMedicineToEdit(medicine.mId)">Edit</button>  
+			<button type="button" mat-stroked-button class="btn btn-info"matTooltip="Click Edit Button"(click)="loadMedicineToEdit(medicine.mId)">Edit</button>  
 			</td>  
 			<td class="tbl2">  
-			<button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteMedicine(medicine.mId)">Delete</button>  
+			<button type="button" class="btn btn-danger" mat-fab matTooltip="Click Delete Button"(click)="deleteMedicine(medicine.mId)"><mat-icon>delete</mat-icon></button>  
 			</td>  
 		</tr>  
 

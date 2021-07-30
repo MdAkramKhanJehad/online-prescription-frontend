@@ -2,7 +2,7 @@
 	<mat-card>
 	<mat-card-content align="center">  
 	<form [formGroup]="prescriptionForm"(ngSubmit)="onFormSubmit(prescriptionForm.value)">  
-		<table>  
+		<table  class="centerTable">  
 		<tr>  
 		<td class="tbl1">  
 			<mat-form-field class="demo-full-width">  
@@ -54,6 +54,7 @@
 		<td></td>  
 		<td  class="content-center">  
 			<button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!prescriptionForm.valid">Submit</button>      
+			&nbsp;&nbsp;&nbsp;
 			<button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
 		</td>  
 		<td>  
@@ -65,7 +66,7 @@
 		</table>
 	<br><br>
 	<table class="table"style="text-align: center;" >  
-		<tr ngclass="btn-primary" style="background-color: burlywood">  
+		<tr ngclass="btn-primary" style="background-color: rgb(42, 151, 109)">  
 			<th class="tbl2">Prescription Id</th>  
 			<th class="tbl2">Patient Name</th>  
 			<th class="tbl2">Patient Age</th>  
@@ -84,13 +85,13 @@
 			<td class="tbl2">{{prescription.doctorName}}</td>  
 			<td class="tbl2">{{prescription.medicinesName}}</td>  
 			<td class="tbl2">  
-			<button type="button" class="btn btn-info" matTooltip="Click Edit Button" (click)="loadPrescriptionToEdit(prescription.pId)">Edit</button>  
+			<button type="button" mat-stroked-button class="btn btn-info" matTooltip="Click Edit Button" (click)="loadPrescriptionToEdit(prescription.pId)">Edit</button>  
 			</td>  
 			<td class="tbl2">  
-				<button type="button" class="btn btn-danger" matTooltip="Click Delete Button" (click)="deletePrescription(prescription.pId)">Delete</button>  
+				<button type="button" class="btn btn-danger" color="accent" mat-fab matTooltip="Click Delete Button" (click)="deletePrescription(prescription.pId)"><mat-icon>delete</mat-icon></button>  
 			</td>  
 			<td class="tbl2">  
-				<button type="button" class="btn btn-info" matTooltip="Generate PDF" routerLink="generatePdf/{{prescription.pId}}" >Generate</button>  
+				<button  type="button" mat-raised-button color="accent" class="btn btn-info" matTooltip="Generate PDF" routerLink="generatePdf/{{prescription.pId}}" >Generate</button>  
 			</td>
 		</tr>  
 

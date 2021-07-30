@@ -2,7 +2,7 @@
 	<mat-card>
 	<mat-card-content align="center">  
 	<form [formGroup]="doctorForm"(ngSubmit)="onFormSubmit(doctorForm.value)">  
-		<table>  
+		<table class="centerTable">  
 		<tr>  
 		<td class="tbl1">  
 			<mat-form-field class="demo-full-width">  
@@ -61,7 +61,8 @@
 		<td></td>  
 		<td  class="content-center">  
 			<button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!doctorForm.valid">Submit</button>      
-			<button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
+			&nbsp;&nbsp;&nbsp;
+      <button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
 		</td>  
 		<td>  
 			<p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">  
@@ -72,7 +73,7 @@
 		</table>
 	<br><br>
 	<table class="table" >  
-		<tr ngclass="btn-primary" style="background-color: burlywood">  
+		<tr ngclass="btn-primary" style="background-color: rgb(36, 180, 168)">  
 			<th class="tbl2">Doctor Id</th>  
 			<th class="tbl2">Doctor Name</th>  
 			<th class="tbl2">Qualification</th>  
@@ -88,10 +89,10 @@
 			<td class="tbl2">{{doctor.email}}</td>  
 			<td class="tbl2">{{doctor.username}}</td>  
 			<td class="tbl2">  
-			<button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadDoctorToEdit(doctor.dId)">Edit</button>  
+			<button type="button" mat-stroked-button class="btn btn-info"matTooltip="Click Edit Button"(click)="loadDoctorToEdit(doctor.dId)">Edit</button>  
 			</td>  
 			<td class="tbl2">  
-			<button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteDoctor(doctor.dId)">Delete</button>  
+			<button type="button" class="btn btn-danger" mat-fab matTooltip="Click Delete Button"(click)="deleteDoctor(doctor.dId)"><mat-icon>delete</mat-icon></button>  
 			</td>  
 		</tr>  
 
